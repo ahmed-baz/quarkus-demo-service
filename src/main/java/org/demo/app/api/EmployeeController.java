@@ -24,21 +24,32 @@ public class EmployeeController {
     }
 
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findEmployeeByEmail(@QueryParam("email") String email) {
+        return Response.ok(EmployeeUtil.createRandomEmployee()).status(Response.Status.OK).build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response create(EmployeeDAO employee) {
-        return Response.ok(employeeService.createEmployee(employee)).status(201).build();
+        return Response.ok(employeeService.createEmployee(employee)).status(Response.Status.CREATED).build();
     }
 
     @PUT
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response update(@PathParam("id") Long id, EmployeeDAO employee) {
-        return Response.ok(employeeService.updateEmployee(id, employee)).status(200).build();
+        return Response.ok(employeeService.updateEmployee(id, employee)).status(Response.Status.OK).build();
     }
 
     @POST
     @Path("/{size}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response createDummy(@PathParam("size") Long size) {
         List<EmployeeDAO> employeeList = EmployeeUtil.getEmployeeList(size.intValue());
-        return Response.ok(employeeService.createEmployee(employeeList)).status(201).build();
+        return Response.ok(employeeService.createEmployee(employeeList)).status(Response.Status.CREATED).build();
     }
 
     @GET

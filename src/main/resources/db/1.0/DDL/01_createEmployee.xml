@@ -1,0 +1,29 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create_employee" author="Ahmed.Baz" labels="demo">
+        <sql>
+            CREATE TABLE EMPLOYEE
+            (
+                ID               INT8         NOT NULL,
+                FIRST_NAME       VARCHAR(255) NOT NULL,
+                LAST_NAME        VARCHAR(255) NOT NULL,
+                EMAIL            VARCHAR(255) NOT NULL,
+                SALARY           NUMERIC(10)  NOT NULL,
+                JOIN_DATE        TIMESTAMP(6),
+                CREATED_BY       INT8,
+                LAST_MODIFIED_BY INT8,
+                CREATED_AT       TIMESTAMP(6),
+                DELETED_AT       TIMESTAMP(6),
+                DELETED_BY       INT8,
+                LAST_MODIFIED_AT TIMESTAMP(6),
+                CONSTRAINT EMPLOYEE_PKEY PRIMARY KEY (ID),
+                CONSTRAINT EMPLOYEE_EMAIL_UKEY UNIQUE (EMAIL)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
